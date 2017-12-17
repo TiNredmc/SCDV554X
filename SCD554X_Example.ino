@@ -6,6 +6,7 @@ int Load= 10;
 void setup(){
 pinMode(Load, OUTPUT);//set pin10 to output for switching "send bit" or "display data out"
 SPI.begin();
+SPI.setBitOrder(LSBFIRST);
 digitalWrite(Load, LOW);
 SPI.transfer(0xC0); // clear display
 digitalWrite(Load, HIGH);
