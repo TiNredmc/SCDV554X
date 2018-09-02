@@ -46,7 +46,7 @@ SPI.transfer(0x55);//10101
 SPI.transfer(0x6E);//01110
 SPI.transfer(0x84);//00100
 digitalWrite(Load, HIGH);
-digitalWrite(Load, LOW);
-SPI.transfer(0xC0); // clear display
-digitalWrite(Load, HIGH);
+
+
+
 }
