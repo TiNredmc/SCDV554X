@@ -3,6 +3,17 @@
 #include<SPI.h> //init. library for spi device .I will communicate with SCDV554X via SPI bus interface .
 const int Load= 10; //Load enable pin.
 
+void SCDV554X.begin(){
+pinMode(Load, OUTPUT);//set pin10 to output for switching "send bit" or "display data out"
+SPI.begin(); //Start SPI 
+SPI.setDataMode(SPI_MODE0); //Set SPI Mode 0 send data at rising edge 
+SPI.setBitOrder(LSBFIRST);//set the LSB first instead MSB first 
+digitalWrite(Load, LOW);//Enable BarLOAD pin 
+SPI.transfer(0xC0); // clear display
+digitalWrite(Load, HIGH);//Disable BarLOAD pin
+delayMicroseconds(1);
+}
+
 void setup(){
 digitalWrite(Load, LOW);
 SPI.transfer(0xF8); // test lamp
@@ -34,16 +45,7 @@ SPI.transfer(0xC0); // clear display
 digitalWrite(Load, HIGH);
 }
 
-void SCDV554X.begin(){
-pinMode(Load, OUTPUT);//set pin10 to output for switching "send bit" or "display data out"
-SPI.begin(); //Start SPI 
-SPI.setDataMode(SPI_MODE0); //Set SPI Mode 0 send data at rising edge 
-SPI.setBitOrder(LSBFIRST);//set the LSB first instead MSB first 
-digitalWrite(Load, LOW);//Enable BarLOAD pin 
-SPI.transfer(0xC0); // clear display
-digitalWrite(Load, HIGH);//Disable BarLOAD pin
-delayMicroseconds(1);
-}
+
 
 void SCDV554X.mosi(uint_8t Dat){
 digitalWrite(Load, LOW);
