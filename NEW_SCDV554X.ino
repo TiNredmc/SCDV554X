@@ -70,7 +70,7 @@ void SCDQ5541::sendDigitData(int digit, char *rowData)
   }
 }
 
-SCDQ5541 ledMatrix(2, 0, 4); //Clock,Data,Load
+SCDQ5541 ledMatrix(2, 0, 4); //Clock,Data,Load (NodeMCU pin)
 
 void setup() {
   ledMatrix.begin();
